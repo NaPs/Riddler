@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header_title %}{{ test.applicant.fullname }}{% endblock %}
+
+{% block header_right %}
+<div id="countdown">{% if test.remaining_seconds == None %}∞{% endif %}</div>
+{% endblock %}
+
+{% block extraheaders %}
+<script type="text/javascript" src="{% static "js/jquery-countdown/jquery.countdown.min.js" %}"></script>
+
+<script>
+    $(function() {
+    {% if test.remaining_seconds != None %}
+        $('#countdown').countdown({
+            layout: '{hnn}:{mnn}:{snn}',
+            until: +{{ test.remaining_seconds }},
+            onTick: function(periods) {
+                if ($.countdown.periodsToSeconds(periods) < 60) {
+                    $(this).addClass('hurryup');
+                }
+            },
+            expiryUrl: '{% url test_index test.pk %}'});
+        {% if not test.is_started %}
+        $('#countdown').countdown('pause');
+        {% endif %}
+    {% endif %}
+        {% block js_on_load %}{% endblock %}
+    });
+</script>
+{% endblock %}

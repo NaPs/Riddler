@@ -1,0 +1,48 @@
+{% extends "base_test.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block js_on_load %}
+var editor = CodeMirror.fromTextArea($('.answer textarea')[0], {
+    mode: {name: 'python',
+           version: 2,
+           singleLineStringErrors: false},
+    lineNumbers: true,
+    identUnit: 4,
+    tabMode: 'shift',
+    matchBreakets: true,
+    theme: 'lesser-dark',
+})
+{% endblock %}
+
+{% block extraheaders %}
+<link rel="stylesheet" href="{% static "js/codemirror/codemirror.css" %}">
+<link rel="stylesheet" href="{% static "js/codemirror/theme/lesser-dark.css" %}">
+<script type="text/javascript" src="{% static "js/codemirror/codemirror.js" %}"></script>
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h2>{% trans "Question" %}</h2>
+
+<div class="question">
+    {{ question.question }}
+</div>
+
+<h2>{% trans "Answer" %}</h2>
+
+<form method="post" action="" class="forms">
+
+    <div class="answer">
+        {{ answer_form.answer }}
+    </div>
+
+     {% csrf_token %}
+
+    <div class="text-centered buttons">
+        <input type="submit" name="answer" class="btn-link" value="{% trans "skip" %}" /> or <input type="submit" name="answer" class="btn" value="{% trans "Answer" %}" />
+    </div>
+
+</forms>
+
+{% endblock %}

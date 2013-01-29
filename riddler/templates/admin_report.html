@@ -1,0 +1,91 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_modify %}
+{% load url from future %}
+{% load admin_urls %}
+{% load humanize_duration %}
+
+{% block extrahead %}{{ block.super }}
+{% url 'admin:jsi18n' as jsi18nurl %}
+<script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+<script type="text/javascript" src="{% static "js/jquery/jquery.js" %}"></script>
+<link rel="stylesheet" href="{% static "css/report.css" %}">
+<link rel="stylesheet" href="{% static "js/codemirror/codemirror.css" %}">
+<link rel="stylesheet" href="{% static "js/codemirror/theme/lesser-dark.css" %}">
+<script type="text/javascript" src="{% static "js/codemirror/codemirror.js" %}"></script>
+<script type="text/javascript" src="{% static "js/codemirror/mode/python/python.js" %}"></script>
+{{ media }}
+
+<script>
+$(function() {
+    $('.show_question').click(function() {
+        $(this).next('.question').slideToggle();
+        return false;
+    });
+})
+</script>
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+
+{% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
+
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ app_label|capfirst|escape }}</a>
+&rsaquo; {% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; {% if add %}{% trans 'Add' %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+&rsaquo; Report
+</div>
+{% endblock %}
+{% endif %}
+
+{% block content %}<div id="content-main">
+
+<h1>{{ original }}: {% trans 'Report' %}</h1>
+
+<fieldset class="module aligned">
+<div class="form-row">
+
+    <div class="report-timeline">
+    </div>
+
+    <div class="answers">
+        {% for series in answer_by_series %}
+        <div class="series">
+            <h2>{{ series.series.name }} (total duration: {{ series.duration }})<a name="series-{{ series.series.pk }}" href="#series-{{ series.series.pk }}" class="anchor"> ¶ </a></h2>
+            {% for answer in series.answers %}
+            <div class="answer">
+                <h3>{{ answer.question }} (min: {{ answer.question.minimum_duration|dt_seconds }}, typical: {{ answer.question.typical_duration|dt_seconds }}, actual: {{ answer.duration|dt_seconds }})<a name="answer-{{ answer.pk }}" href="#answer-{{ answer.pk }}" class="anchor"> ¶ </a></h3>
+                <div class="answer-code">
+                    <textarea id="answer-code-{{ answer.pk }}">{{ answer.answer }}</textarea>
+                    <script>
+                        var editor = CodeMirror.fromTextArea(document.getElementById('answer-code-{{ answer.pk }}'), {
+                            mode: {name: '{{ answer.question.editor_mode|default:"plain-text" }}'},
+                            lineNumbers: true,
+                            identUnit: 4,
+                            tabMode: 'shift',
+                            matchBreakets: true,
+                            theme: 'lesser-dark',
+                        })
+                    </script>
+                </div>
+                <a href="" class="show_question">{% admin "Show question" %}</a>
+                <div class="question">
+                    {{ answer.question.question }}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+</fieldset>
+</div>
+{% endblock %}

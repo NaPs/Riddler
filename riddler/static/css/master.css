@@ -1,0 +1,137 @@
+/* =Typography
+-----------------------------------------------------------------------------*/
+body {
+    background-color: #4F453A;
+    background-image: url(../images/background.png);
+}
+
+/* =Links
+-----------------------------------------------------------------------------*/
+
+
+/* =Layout
+-----------------------------------------------------------------------------*/
+#page {
+    width: 940px;
+    padding: 0 10px;
+    margin: 24px auto;
+}
+
+.block {
+    background-color: #F7F7F7;
+    background-image: url(../images/background_content.png);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(50, 50, 50, 0.75);
+}
+/* =Header
+-----------------------------------------------------------------------------*/
+
+header .headband {
+    padding: 10px;
+    color: #D8D7D5;
+    width: 90%;
+    margin: 10px auto;
+}
+
+header .headband img {
+}
+
+header .headband h1 {
+    margin-top: 30px;
+    text-shadow: 1px 1px 1px #000;
+}
+
+h2, h3, h4 {
+    color: #362B25;
+}
+
+/* =Nav
+-----------------------------------------------------------------------------*/
+
+
+/* =Misc
+-----------------------------------------------------------------------------*/
+
+.tbody-blur {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.question {
+    margin: 15px 5px;
+    padding: 5px;
+    border-left: solid 2px #DCDCDC;
+}
+
+.answer textarea {
+    width: 100%;
+    height: 200px;
+}
+
+.buttons {
+    padding: 20px;
+}
+
+.btn-link {
+    border: none;
+    display: inline;
+    margin: 0em;
+    padding: 0em;
+    outline: none;
+    outline-offset: 0em;
+    background: none;
+    color: #369;
+    cursor: pointer;
+    font: inherit;
+    text-decoration: underline;
+}
+
+.answer {
+    border: solid 4px #3B3B3B;
+}
+
+#countdown {
+    background-image: url(../images/countdown_background.png);
+    font-size: 2em;
+    padding: 15px;
+    margin: auto;
+    margin-top: 20px;
+    border: solid 2px #2C251E;
+    text-align: center;
+    box-shadow: inset 0 0 10px #2E271F;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #E4E3E0;
+}
+
+@-webkit-keyframes blinker {
+    from {
+        opacity: 1.0;
+    }
+    to {
+        opacity: 0.2;
+    }
+}
+
+.hurryup {
+    color: #E11A23 !important;
+    -webkit-animation-name: blinker;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: cubic-bezier(1.0, 0, 0, 1.0);
+    -webkit-animation-duration: 1s;
+}
+
+/* =Footer
+-----------------------------------------------------------------------------*/
+
+footer {
+    text-align: center;
+    margin: 10px 0;
+    color: #36302A;
+    font-size: 80%;
+}
+
+footer a {
+    color: inherit;
+    font-weight: bold;
+}

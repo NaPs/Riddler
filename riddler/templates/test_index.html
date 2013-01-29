@@ -1,0 +1,42 @@
+{% extends "base_test.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<h2>{% trans "Rules" %}</h2>
+
+<ul>
+    <li>You may use help from the web</li>
+    <li>You can only answer to one question at time</li>
+    <li>When you open a question, you must answer it, or skip it</li>
+    <li>You can't reopen a skipped or an already answered question</li>
+    <li>The countdown will start when you open the first question</li>
+</ul>
+
+<h2>{% trans "Questions" %}</h2>
+
+<table class="width-100 bordered">
+    <thead class="thead-gray">
+        <tr>
+            <th class="text-centered" style="width: 10%">{% trans "Status" %}</th>
+            <th>{% trans "Question title" %}</th>
+        </tr>
+    </thead>
+    <tbody class="tbody-blur">
+        {% for a_series in series %}
+        <tr>
+            <td class="text-centered">
+            {% if a_series.status == 'to_answer' %}
+            <img src="{% static "images/to_answer.png" %}" alt="to answer" title="{% trans "You have to answer this question" %}" />
+            {% elif a_series.status == 'answered' %}
+            <img src="{% static "images/answered.png" %}" alt="answered" title="{% trans "This question has already been answered" %}" />
+            {% elif a_series.status == 'answering' %}
+            <img src="{% static "images/answering.png" %}" alt="answering" title="{% trans "You are currently answering this question" %}" />
+            {% endif %}
+            </td>
+            <td>{% if a_series.status == 'answering' or a_series.status == 'to_answer' %}<a href="{% url start_to_answer_series test_id a_series.id %}">{{ a_series.name }}</a>{% else %}{{ a_series.name }}{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

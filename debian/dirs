@@ -1,0 +1,3 @@
+var/lib/riddler
+var/lib/riddler/static
+var/lib/riddler/media

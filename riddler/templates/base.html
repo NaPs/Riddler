@@ -1,0 +1,47 @@
+{% load staticfiles %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="{% static "css/kube.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/master.css" %}">
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="{% static "js/jquery/jquery.js" %}"></script>
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
+
+    {% block extraheaders %}{% endblock %}
+</head>
+<body>
+    <div id="page">
+        <header>
+            <div class="row headband">
+                <div class="fifth"><img src="{% static "images/logo.png" %}" alt="Riddler logo" /></div>
+                <div class="threefifth"><h1>{% block header_title %}{% endblock %}</h1></div>
+                <div class="fifth">{% block header_right %}{% endblock %}</div>
+            </div>
+        </header>
+
+        <div class="block">
+            {% block content %}{% endblock %}
+        </div>
+
+        <footer>
+            Powered by <a href="https://github.com/NaPs/Riddler">Riddler</a>
+        </footer>
+
+    </div>
+</body>
+</html>

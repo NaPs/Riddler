@@ -1,0 +1,29 @@
+Source: riddler
+Section: python
+Priority: optional
+Maintainer: Antoine Millet <antoine@inaps.org>
+Build-Depends: debhelper (>= 7),
+               python-central (>= 0.6),
+               cdbs (>= 0.4.50),
+               python-setuptools,
+               python
+XS-Python-Version: >= 2.6
+Standards-Version: 3.9.1
+
+Package: riddler
+Architecture: all
+Depends: ${misc:Depends},
+         ${python:Depends},
+         python-django (>= 1.4),
+         python-django-imperavi,
+         python-django-south,
+         libjs-codemirror,
+         libjs-jquery,
+         libjs-jquery-countdown,
+Recommends: gunicorn (>= 0.14)
+Suggests: python-django-debug-toolbar
+XB-Python-Version: ${python:Versions}
+Description: Job interview technical tests web application
+ Riddler is a web application that can help recruiters to do job interview
+ technical tests. Riddler provides an administration zone to enter questions
+ and create tests, and a test zone for applicants.

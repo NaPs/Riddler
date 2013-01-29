@@ -1,0 +1,24 @@
+.answer {
+    padding: 5px;
+    margin: 10px;
+    border-left: solid 4px #AFAFAF;
+}
+
+.answer-code {
+    padding: 20px;
+}
+
+.question {
+    background-color: #D0D0D0;
+    margin: 10px;
+    padding: 20px;
+    display: none;
+}
+
+.anchor {
+    opacity: 0.3;
+}
+
+h2:hover .anchor, h3:hover .anchor {
+    opacity: 1;
+}
