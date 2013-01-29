@@ -249,7 +249,7 @@ class Answer(models.Model):
     start_to_answer_date = models.DateTimeField(auto_now_add=True)
     end_to_answer_date = models.DateTimeField(blank=True, null=True)
 
-    def complete(self, answer, skip=False):
+    def complete(self, answer=None, skip=False):
         """ Complete this anwser.
         """
         self.answer = answer
