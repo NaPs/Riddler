@@ -7,6 +7,8 @@ from django.db import models
 from django.db.models import Sum
 from django.core.urlresolvers import reverse
 
+from south.modelsinspector import add_introspection_rules
+
 
 def gen_random_id():
     """ Generate a 4 characters length url-safe random id.
@@ -16,6 +18,9 @@ def gen_random_id():
 
 class RichTextField(models.TextField):
     pass
+
+
+add_introspection_rules([], ['^riddler\.models\.RichTextField'])
 
 
 class Applicant(models.Model):
