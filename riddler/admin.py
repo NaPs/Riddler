@@ -45,8 +45,11 @@ class TestAdmin(ImperaviAdmin):
 
     unique_media = True
     list_display = ('applicant', 'creation_date', 'progress', 'recruiter', 'link')
-    fields = ('instructions', 'series', 'applicant', 'recruiter',
-              'maximum_duration', 'cur_series', 'cur_answer')
+    fieldsets = ((None, {'fields': ('instructions', 'series', 'applicant',
+                                    'recruiter', 'maximum_duration')}),
+                 ('Internal', {'classes': ('collapse',),
+                               'description': '/!\\ do not touch unless you know what you are doing /!\\',
+                               'fields': ('cur_series', 'cur_answer')}))
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         # Set the recruiter default value as current logged user:
