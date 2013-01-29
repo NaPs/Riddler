@@ -7,3 +7,11 @@ class AnswerForm(forms.Form):
     """
 
     answer = forms.CharField(widget=forms.Textarea)
+
+
+class ShortcodeForm(forms.Form):
+
+    """ Enter a shortcode form.
+    """
+
+    shortcode = forms.CharField()

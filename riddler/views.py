@@ -2,7 +2,20 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.forms.models import model_to_dict
 
 from riddler.models import Test, Series
-from riddler.forms import AnswerForm
+from riddler.forms import AnswerForm, ShortcodeForm
+
+
+def home(request):
+    """ Riddler index page.
+    """
+    if request.method == 'POST':
+        shortcode_form = ShortcodeForm(request.POST)
+        if shortcode_form.is_valid():
+            print
+            return redirect('test_index', test_id=shortcode_form.cleaned_data['shortcode'])
+    else:
+        shortcode_form = ShortcodeForm()
+    return render(request, 'home.html', {'shortcode_form': shortcode_form})
 
 
 def test_index(request, test_id):

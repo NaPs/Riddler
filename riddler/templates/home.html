@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<h2>{% trans "Welcome to Riddler!" %}</h2>
+
+<form method="post">
+<p class="text-centered">{% trans "Enter your test shortcode:" %} {{ shortcode_form.shortcode }}<input type="submit" id="go" class="btn btn-append" value="Go!" /></p>
+{% csrf_token %}
+</form>
+
+{% endblock %}
