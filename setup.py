@@ -22,6 +22,7 @@ setup(name='riddler',
       data_files=(
           ('/etc/', ('etc/riddler.conf',)),
       ),
+      scripts=['riddleradm'],
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
       zip_safe=True,

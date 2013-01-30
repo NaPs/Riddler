@@ -3,6 +3,7 @@ include RELEASE.rst
 include CHANGELOG.rst
 include TODO.rst
 include COPYING
+include riddleradm
 recursive-include etc *.conf
 recursive-include riddler *.py *.png *.css *.html
 recursive-include riddler_custom_admin *.py *.png *.css *.html
