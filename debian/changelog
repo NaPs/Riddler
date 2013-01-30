@@ -1,3 +1,9 @@
+riddler (0.2~dev) testing; urgency=low
+
+  * Development release.
+
+ -- Antoine Millet <antoine@inaps.org>  Wed, 30 Jan 2013 20:02:30 +0100
+
 riddler (0.1-1) testing; urgency=low
 
   * Initial release.
