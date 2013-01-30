@@ -20,8 +20,8 @@ Setup
 Riddler is packaged for the Debian Wheezy distro, but since its a standard
 Django application, it should be easy to install it on any other distro.
 
-Install packages
-~~~~~~~~~~~~~~~~
+Install the Riddler package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Add this lines in your ``/etc/apt/source.list`` file::
 
@@ -32,7 +32,7 @@ Add the Tecknet repositories key in your keyring:
 
     # wget http://debian.tecknet.org/debian/public.key -O - | apt-key add -
 
-Then, update and install::
+Update and install the *riddler* package::
 
     # aptitude update
     # aptitude install riddler
@@ -50,19 +50,18 @@ to ``riddler``::
     # cd /etc/gunicorn.d
     # cp riddler.example riddler
 
-You can customize the file to add or change gunicorn options such as the
+You can customize the file to add or change Gunicorn options such as the http
 listening port (by default 9001) or the number of workers to start.
 
-Restart gunicorn to start Riddler::
+Restart the Gunicorn daemon to start Riddler::
 
     # service gunicorn restart
 
 Configure the web server
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The last thing to do is to configure a web server to reverse proxy the Riddler
-application served by Gunicorn, and to serve static files. Here is an example
-for nginx::
+The last thing to do is to configure a web server to reverse proxify the Riddler
+application, and to serve its static files. Here is an example for nginx::
 
     # cat /etc/nginx/site-enabled/riddler
     server {
