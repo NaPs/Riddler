@@ -40,7 +40,7 @@ var editor = CodeMirror.fromTextArea($('.answer textarea')[0], {
      {% csrf_token %}
 
     <div class="text-centered buttons">
-        <input type="submit" name="answer" class="btn-link" value="{% trans "skip" %}" /> or <input type="submit" name="answer" class="btn" value="{% trans "Answer" %}" />
+        <input type="submit" name="doanswer" class="btn-link" value="{% trans "skip" %}" /> or <input type="submit" name="doanswer" class="btn" value="{% trans "Answer" %}" />
     </div>
 
 </forms>
